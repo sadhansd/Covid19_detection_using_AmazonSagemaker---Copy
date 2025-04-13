@@ -3,5 +3,6 @@
 /logs
 *.npy
 /model-001.keras
+/mlruns
 # Ignore egg-info directory
 /src/cnnClassifier.egg-info

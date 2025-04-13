@@ -11,20 +11,16 @@ class ModelTraining:
     def __init__(self):
         self.config = ConfigurationManager()
         self.model_builder = BaseModelBuilder()
-        self.model = self.model_builder.build_model()
-        self.model_path, self.feature_data, self.target_data, self.test_size, self.epoch, self.validation_split, self.model_save_path = self.config.get_model_training_config()
-        logger.info("Getting model parameters from config file")
-        logger.info("Loading feature and target data")
 
     def split_data(self):
-
-        data= np.load(self.feature_data)
-        target= np.load(self.target_data)
+        feature_path, target_path, test_size, = self.config.get_data_splitting_config()
+        data= np.load(feature_path)
+        target= np.load(target_path)
         target = to_categorical(target)
         logger.info(target.shape)
 
         train_data, test_data, train_target, test_target = train_test_split(
-            data,target, test_size=self.test_size
+            data,target, test_size=test_size
         )
         logger.info("Splitting data into training and testing sets")
         return train_data, test_data, train_target, test_target
@@ -34,10 +30,12 @@ class ModelTraining:
         return checkpoint
     
     def train_model(self):
-        train_data, test_data, train_target, test_target = self.split_data()
-        
-        checkpoint = self.set_checkpoint()
 
+        self.model = self.model_builder.build_model()
+        self.epoch, self.validation_split, self.model_save_path = self.config.get_model_training_config()
+        logger.info("Model training configuration loaded successfully")
+        train_data, test_data, train_target, test_target = self.split_data()
+        checkpoint = self.set_checkpoint()
         logger.info("Training the model")
         history=self.model.fit(train_data,train_target,epochs=self.epoch,callbacks=[checkpoint],validation_split=self.validation_split,verbose=1)
         logger.info("Model training completed")

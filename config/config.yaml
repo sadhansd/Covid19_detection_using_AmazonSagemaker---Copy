@@ -15,7 +15,6 @@ model:
 
 training:
   data_path: 'artifacts\dataset\Data\train'
-  model_path: 'artifacts\model'
   feature_path: "data.npy"
   target_path: "target.npy"
   test_size: 0.1
@@ -25,3 +24,6 @@ training:
   optimizer: "adam"
   metrics: ["accuracy"]
   model_save_path: "artifacts/model/model.h5"
+
+evaluation:
+  mlflow_tracking_uri: "https://dagshub.com/sadhansd/Covid19_detection_using_AmazonSagemaker---Copy.mlflow"
