@@ -1,0 +1,5 @@
+# Ignore dataset directory
+/artifacts/dataset
+/logs
+# Ignore egg-info directory
+/src/cnnClassifier.egg-info

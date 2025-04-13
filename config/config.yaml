@@ -1,0 +1,20 @@
+dataset:
+  dataset_name: "prashant268/chest-xray-covid19-pneumonia"
+  output_dir: "artifacts/dataset"
+
+model:
+  input_shape: [50, 50, 1]
+  parallel_kernels: [3, 5, 7]
+  conv2d_filters: [128, 64, 32]
+  conv2d_kernel_size: [3, 3]
+  pool_size: [2, 2]
+  dense_units: [128, 64]
+  dropout_rate: 0.5
+  output_units: 2
+  output_activation: "softmax"
+
+training:
+  data_path: 'artifacts\dataset\Data\train'
+  loss: "categorical_crossentropy"
+  optimizer: "adam"
+  metrics: ["accuracy"]

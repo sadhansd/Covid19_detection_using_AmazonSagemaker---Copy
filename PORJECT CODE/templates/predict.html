@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Limelight&display=swap"
+      rel="stylesheet"
+    />
+    <title>Covid detection - predict</title>
+  </head>
+  <body>
+    <div class="navabar">
+      <a href="#title" class="home"><p>Home</p></a>
+      <a href="#about" class="about"><p>About</p></a>
+      <a href="#upload">
+        <div class="detect">
+          <div class="detect-nav-button">
+            <div class="detect-text">Detect</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <section id="title">
+      <div class="text">
+        <p>
+          Unlock covid <img src="images/Rectangle 1.png" alt="" /> secrets
+          <img src="images/Rectangle 2.png" alt="" />
+          through <img src="images/Rectangle 3.png" alt="" /> x-rays
+        </p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="about-title">
+        <p>Detect your <br />condition</p>
+        <br />
+
+        <button class="detect-button" onclick="location.href='#upload'">
+          <div class="detect-btn-content">
+            Detect <img src="images/majesticons_arrow-up.svg" alt="" />
+          </div>
+        </button>
+      </div>
+      <div class="about-content">
+        <img class="chest-img" src="images/chest.png" alt="" />
+        <div class="box b1">
+          <p>
+            By leveraging advanced
+            <span class="dark">deep learning algorithms</span>
+          </p>
+        </div>
+        <img src="images/line-1.svg" class="line1" />
+        <div class="box b2">
+          <p>
+            Diagnose<br />
+            <span class="darkk">COVID</span>
+          </p>
+        </div>
+        <img src="images/line-2.svg" class="line2" />
+        <div class="box b3">
+          <p>
+            Detect the covid virus through
+            <span class="dark">X-ray</span> images
+          </p>
+        </div>
+        <img src="images/line-3.svg" class="line3" />
+      </div>
+    </section>
+
+    <section id="upload">
+      <div class="upload-title">
+        <p>
+          Upload your<br /><span class="upload-dark">X-Ray scan image</span>
+        </p>
+      </div>
+
+      <div class="result-box">
+        <img src="images/PosXray.png" class="result-img" />
+        <div class="result r1">
+          <p>covid <br /><span class="result-dark">POSITIVE</span></p>
+        </div>
+        <div class="result r2">
+          <p>Accuracy <br /><span class="result-dark">89.43%</span></p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
