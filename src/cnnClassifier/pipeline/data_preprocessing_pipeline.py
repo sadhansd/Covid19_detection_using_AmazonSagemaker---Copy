@@ -17,10 +17,6 @@ class DataPreprocessingPipeline:
         self.preprocessor.save_data()
         self.preprocessor.load_data()
 
-    def get_input_shape(self):
-        input_shape = self.preprocessor.get_input_shape()
-        return input_shape
-
 if __name__ == '__main__':
     try:
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")

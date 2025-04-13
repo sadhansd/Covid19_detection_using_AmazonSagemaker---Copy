@@ -1,6 +1,7 @@
 # Ignore dataset directory
-/artifacts/dataset
+/artifacts
 /logs
 *.npy
+/model-001.keras
 # Ignore egg-info directory
 /src/cnnClassifier.egg-info

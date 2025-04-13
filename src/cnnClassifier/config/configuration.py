@@ -50,3 +50,15 @@ class ConfigurationManager:
             "optimizer": optimizer,
             "metrics": metrics
         }
+    
+    def get_model_training_config(self):
+        config = confuse.Configuration("Covid19Detection", __name__)
+        config.set_file(self.config)
+        model_path = config["training"]["model_path"].get(str)
+        feature_path = config["training"]["feature_path"].get(str)
+        target_path = config["training"]["target_path"].get(str)
+        test_size = config["training"]["test_size"].get(float)
+        epoch = config["training"]["epoch"].get(int)
+        validation_split = config["training"]["validation_split"].get(float)
+        model_save_path = config["training"]["model_save_path"].get(str)
+        return model_path, feature_path, target_path, test_size, epoch, validation_split, model_save_path
