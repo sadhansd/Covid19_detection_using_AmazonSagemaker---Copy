@@ -1,0 +1,49 @@
+stages:
+  data_ingestion:
+    cmd: python src/cnnClassifier/pipeline/data_ingestion_pipeline.py
+    deps:
+      - src/cnnClassifier/pipeline/data_ingestion_pipeline.py
+      - src\cnnClassifier\components\data_ingestion.py
+      - config/config.yaml
+    outs:
+      - artifacts/dataset
+
+  data_preprocessing:
+    cmd: python src/cnnClassifier/pipeline/data_preprocessing_pipeline.py
+    deps: 
+      - src/cnnClassifier/pipeline/data_preprocessing_pipeline.py
+      - config/config.yaml
+      - artifacts/dataset
+    params:
+      - dataset_path
+
+  training:
+    cmd: python src/cnnClassifier/pipeline/model_training_pipeline.py
+    deps: 
+      - src/cnnClassifier/pipeline/model_training_pipeline.py
+      - config/config.yaml
+      - artifacts/dataset
+    params: 
+      - feature_path
+      - target_path
+      - test_size
+      - epoch
+      - validation_split
+      - model_save_path
+    outs:
+      - artifacts/model/model.h5
+  
+  evaluation:
+    cmd: python src/cnnClassifier/pipeline/model_evaluation_pipeline.py
+    deps:
+      - src/cnnClassifier/pipeline/model_evaluation_pipeline.py
+      - config/config.yaml
+      - artifacts/dataset
+      - artifacts/model/model.h5
+    params:
+      - mlflow_uri
+      - model_path
+      - epoch
+    metrics:
+      - scores.json:
+          cache: false

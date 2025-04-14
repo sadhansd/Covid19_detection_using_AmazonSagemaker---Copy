@@ -81,16 +81,3 @@ class DataPreprocessor:
         input_shape = self.data.shape[1:]
         logger.info(f"Input shape for the model: {input_shape}")
         return input_shape
-
-
-# Example usage
-if __name__ == "__main__":
-    dataset_path = r'artifacts\dataset\Data\train'
-    preprocessor = DataPreprocessor(dataset_path)
-
-    preprocessor.list_categories()
-    preprocessor.process_images()
-    preprocessor.preprocess_data()
-    preprocessor.save_data()
-    preprocessor.load_data()
-    input_shape = preprocessor.get_input_shape()

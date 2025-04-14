@@ -6,8 +6,15 @@ import subprocess
 from cnnClassifier.config.configuration import ConfigurationManager
 from cnnClassifier import logger
 
+import ssl
+import subprocess
+
+
+
+
 class Ingestor(ABC):
     def __init__(self, data_path, output_dir):
+        ssl._create_default_https_context = ssl._create_unverified_context
         self.data_path = data_path
         self.output_dir = output_dir
 
@@ -24,9 +31,9 @@ class zipIngestor(Ingestor):
         extracted_files = os.listdir(self.output_dir)
         csv_files = [file for file in extracted_files if file.endswith('.csv')]
         
-        if len(csv_files) == 0:
-            logger.error("No CSV files found in the zip archive.")
-            raise ValueError("No CSV files found in the zip archive.")
+        # if len(csv_files) == 0:
+        #     logger.error("No CSV files found in the zip archive.")
+        #     raise ValueError("No CSV files found in the zip archive.")
         
         logger.info(f"Data extracted to {self.output_dir}")
         return self.output_dir
