@@ -17,10 +17,6 @@ Tech Stack:
 
 ![image](https://github.com/user-attachments/assets/2af33747-6f98-4776-83ba-e12749bd2e74)
 
-import dagshub
-dagshub.init(repo_owner='sadhansd', repo_name='Covid19_detection_using_AmazonSagemaker---Copy', mlflow=True)
 
-import mlflow
-with mlflow.start_run():
-mlflow.log_param('parameter name', 'value')
-mlflow.log_metric('metric name', 1)
+
+
