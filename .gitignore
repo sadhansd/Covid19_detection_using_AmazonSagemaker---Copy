@@ -6,3 +6,4 @@
 /mlruns
 # Ignore egg-info directory
 /src/cnnClassifier.egg-info
+/src/cnnClassifier/flaskapp/static/uploads
