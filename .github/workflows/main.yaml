@@ -22,11 +22,13 @@ jobs:
       - name: Install Utilities
         run: |
           sudo apt-get update
-          sudo apt-get install -y jq unzip libgl1  # Replaced libgl1-mesa-glx with libgl1
+          sudo apt-get install -y jq unzip libgl1  
 
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
+          # Install dependencies, excluding pywin32
+          sed -i '/pywin32/d' requirements.txt
           pip install -r requirements.txt
 
       - name: Run unit tests
