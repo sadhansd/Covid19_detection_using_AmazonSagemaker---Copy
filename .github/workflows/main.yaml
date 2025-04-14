@@ -22,7 +22,7 @@ jobs:
       - name: Install Utilities
         run: |
           sudo apt-get update
-          sudo apt-get install -y jq unzip libgl1-mesa-glx  # Added system dependencies
+          sudo apt-get install -y jq unzip libgl1  # Replaced libgl1-mesa-glx with libgl1
 
       - name: Install Python Dependencies
         run: |
