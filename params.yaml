@@ -1,0 +1,9 @@
+dataset_path: artifacts/dataset
+feature_path: data.npy
+target_path: target.npy
+test_size: 0.1
+epoch: 1
+validation_split: 0.1
+model_save_path: artifacts/model/model.h5
+mlflow_uri: https://dagshub.com/sadhansd/Covid19_detection_using_AmazonSagemaker---Copy.mlflow
+model_path: artifacts/model/model.h5
