@@ -10,7 +10,7 @@ import cv2
 class Prediction:
     def __init__(self):
         self.config = ConfigurationManager()
-        self.model_path = self.config.get_model_path()
+        self.model_path = 'model\model.h5'
         self.model = load_model(self.model_path)
         
     def process_image(self,filename):
