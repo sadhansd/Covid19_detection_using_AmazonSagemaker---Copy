@@ -8,7 +8,7 @@ class ModelEvaluationPipeline:
     def __init__(self):
         model_eval = ModelEvaluation()
         model_eval.evaluate_model()
-        model_eval.log_into_mlflow()
+        #model_eval.log_into_mlflow()
 
 if __name__ == '__main__':
     try:

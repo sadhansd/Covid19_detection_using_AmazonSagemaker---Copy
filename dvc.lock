@@ -1,0 +1,102 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/cnnClassifier/pipeline/data_ingestion_pipeline.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: b7de784a1dac30c915b0f7843de37603
+      size: 780
+    - path: src/cnnClassifier/components/data_ingestion.py
+      hash: md5
+      md5: 86cbca463abcb3bee7194689abf959dc
+      size: 4269
+    - path: src/cnnClassifier/pipeline/data_ingestion_pipeline.py
+      hash: md5
+      md5: a65de123da3cb25da2831c5d880dfcb1
+      size: 896
+    outs:
+    - path: artifacts/dataset
+      hash: md5
+      md5: 31c8816d2ff7c42dc8cf33e54510dcbd.dir
+      size: 2300448032
+      nfiles: 6432
+  data_preprocessing:
+    cmd: python src/cnnClassifier/pipeline/data_preprocessing_pipeline.py
+    deps:
+    - path: artifacts/dataset
+      hash: md5
+      md5: 31c8816d2ff7c42dc8cf33e54510dcbd.dir
+      size: 2300448032
+      nfiles: 6432
+    - path: config/config.yaml
+      hash: md5
+      md5: b7de784a1dac30c915b0f7843de37603
+      size: 780
+    - path: src/cnnClassifier/pipeline/data_preprocessing_pipeline.py
+      hash: md5
+      md5: ac0b80471a40b0b9a0b6eee5a4733edf
+      size: 976
+    params:
+      params.yaml:
+        dataset_path: artifacts/dataset
+  training:
+    cmd: python src/cnnClassifier/pipeline/model_training_pipeline.py
+    deps:
+    - path: artifacts/dataset
+      hash: md5
+      md5: 31c8816d2ff7c42dc8cf33e54510dcbd.dir
+      size: 2300448032
+      nfiles: 6432
+    - path: config/config.yaml
+      hash: md5
+      md5: b7de784a1dac30c915b0f7843de37603
+      size: 780
+    - path: src/cnnClassifier/pipeline/model_training_pipeline.py
+      hash: md5
+      md5: 680c3ca5e6721fd40acd5d86fdbb3b70
+      size: 651
+    params:
+      params.yaml:
+        epoch: 1
+        feature_path: data.npy
+        model_save_path: artifacts/model/model.h5
+        target_path: target.npy
+        test_size: 0.1
+        validation_split: 0.1
+    outs:
+    - path: artifacts/model/model.h5
+      hash: md5
+      md5: 82be557c23cbe86e470dcde30cfed229
+      size: 29183216
+  evaluation:
+    cmd: python src/cnnClassifier/pipeline/model_evaluation_pipeline.py
+    deps:
+    - path: artifacts/dataset
+      hash: md5
+      md5: 31c8816d2ff7c42dc8cf33e54510dcbd.dir
+      size: 2300448032
+      nfiles: 6432
+    - path: artifacts/model/model.h5
+      hash: md5
+      md5: 82be557c23cbe86e470dcde30cfed229
+      size: 29183216
+    - path: config/config.yaml
+      hash: md5
+      md5: b7de784a1dac30c915b0f7843de37603
+      size: 780
+    - path: src/cnnClassifier/pipeline/model_evaluation_pipeline.py
+      hash: md5
+      md5: a800f0c839f598b728ca52f9fabb03ba
+      size: 693
+    params:
+      params.yaml:
+        epoch: 1
+        mlflow_uri: 
+          https://dagshub.com/sadhansd/Covid19_detection_using_AmazonSagemaker---Copy.mlflow
+        model_path: artifacts/model/model.h5
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: b066b3815e40b1046e9a1f65731f02ce
+      size: 73
